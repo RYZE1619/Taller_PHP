@@ -1,6 +1,11 @@
+@font-face {
+    font-family: letra1;
+    src: url(../letra/LioneyDemo.ttf)
+}
+
 /* Estilos generales para centrar el menú en la página */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: letra1;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -23,7 +28,7 @@ h3 {
     font-size: 6cap;
     font-weight: bold;
     /* Morado para títulos */
-    font-family: 'Orbitron', sans-serif;
+    font-family: letra1;
     letter-spacing: 2px;
     margin-bottom: 10%;
     margin-top: 5%;
@@ -33,6 +38,8 @@ h3 {
 .menu-container {
     background-color: #69778D;
     padding: 40px;
+    margin-top: 10%;
+    margin-bottom: 10%;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -40,9 +47,6 @@ h3 {
     max-width: 600px;
 }
 
-
-
-/* Contenedor del menú usando Flexbox para simetría */
 .menu-apps {
     display: flex;
     flex-direction: column;
@@ -60,7 +64,7 @@ h3 {
     /* Color verde base */
     padding: 15px 25px;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 500;
     transition: all 0.3s ease;
     /* Transición suave para todas las propiedades */
@@ -74,7 +78,7 @@ h3 {
     background-color: #2A438C;
     margin-top: 1%;
     margin-bottom: 1%;
-    transition: 2s;
+    transition: 3s;
     border: black solid 3px;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
