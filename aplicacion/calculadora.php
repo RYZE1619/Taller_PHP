@@ -59,9 +59,7 @@ require_once __DIR__ . "/../operaciones/calculadora_op.php";
         <?php endif; ?>
 
         <div class="menu-apps">
-            <div>
-
-            </div>
+            <div></div>
             <a href="../index.html">VOLVER AL MENU</a>
         </div>
     </div>

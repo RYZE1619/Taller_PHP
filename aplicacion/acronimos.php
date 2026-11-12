@@ -34,6 +34,7 @@ require_once __DIR__ . "/../operaciones/acronimo.php";
         </div>
 
         <div class="menu-apps">
+            <div></div>
             <a href="../index.html">VOLVER AL MENU</a>
         </div>
     </div>

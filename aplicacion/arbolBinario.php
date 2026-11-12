@@ -57,17 +57,11 @@ require_once __DIR__ . "/../operaciones/contArbol.php";
             </div>
         </form>
         <div>
-
             <?php if ($mensajeError !== ""): ?>
-
                 <h2><?= htmlspecialchars($mensajeError, ENT_QUOTES, 'UTF-8') ?></h2>
-
             <?php elseif ($arbolFin !== null): ?>
-
                 <p>Resultado del arbol binario</p>
-
                 <?php imprimirArbol($arbolFin); ?>
-
             <?php endif; ?>
         </div>
         <div class="menu-apps">

@@ -9,26 +9,22 @@ class Acronimo
         $this->textoingr = $textoingr;
     }
 
-    public function generar(): string
+    public function genera(): string
     {
-        // Separa por espacios o guiones; NO_EMPTY ignora separadores repetidos (Hola--Mundo)
+        // quita los espacios I y F corta el texto en pedazos PS y el PSNE descarta pedazos vacios res es un arreglo
         $listaPalabras = preg_split('/[\s-]+/', trim($this->textoingr), -1, PREG_SPLIT_NO_EMPTY);
 
         $resultado = '';
-
-        foreach ($listaPalabras as $palabra) {
-            // mb_ funciona bien con tildes y ñ (Árbol, Ñandú)
+        foreach ($listaPalabras as $palabra) { // Array que toca pa primera letra y luego le pone en mayuscula MSPPER
             $resultado .= mb_strtoupper(mb_substr($palabra, 0, 1));
         }
-
         return $resultado;
     }
 }
-
-// Operador de coalescencia nula: si no llega 'frase', usa cadena vacía
+//llega lo que envio el formulario, elimina los espacios externos y condicional de vacio
 $entradaFrase = trim($_POST['textoingr'] ?? '');
 $acronimoFinal = '';
 
 if ($entradaFrase !== '') {
-    $acronimoFinal = (new Acronimo($entradaFrase))->generar();
+    $acronimoFinal = (new Acronimo($entradaFrase))->genera(); //genera
 }

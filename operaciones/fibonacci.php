@@ -1,15 +1,16 @@
 <?php
 class secuenciaFibonacci
 {
-    // Genera la serie de Fibonacci con la cantidad de términos pedida
-    public function generar(int $cantidad): array
+    // metodo que recibe y devulve el arrglo genera la serie de fibonacci 
+    public function genera(int $cantidad): array
     {
+        //casos especiales de0 y 1
         if ($cantidad <= 0) return [];
         if ($cantidad === 1) return [0];
 
         $secuencia = [0, 1];
         for ($posicion = 2; $posicion < $cantidad; $posicion++) {
-            // Cada término es la suma de los dos anteriores
+            //empieza la suma de terminos de los dos anteriores
             $secuencia[] = $secuencia[$posicion - 1] + $secuencia[$posicion - 2];
         }
         return $secuencia;
@@ -29,6 +30,6 @@ if ($entradaCantidad !== '') {
     if ($cantidadValida === false) {
         $mensajeError = "Ingrese un número entero entre 1 y 90.";
     } else {
-        $serieFinal = (new secuenciaFibonacci())->generar($cantidadValida);
+        $serieFinal = (new secuenciaFibonacci())->genera($cantidadValida);
     }
 }
