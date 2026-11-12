@@ -241,7 +241,7 @@ function imprimirArbol(?Nodo $raiz): void
         return;
     }
 
-    echo '<pre class="formatoArbol">';
+    echo '<pre class="visualArbol">';
 
     $niveles = [];
     $cola = [["nodo" => $raiz, "nivel" => 0, "pos" => 0]];

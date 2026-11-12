@@ -1,20 +1,40 @@
 <?php
 class convertidorNumeros
 {
-
-    public function enteroABinario(int $numero): string
+    public function enteroABinario(int $numeroDecimal): string
     {
-        if ($numero === 0) return "0";
+        if ($numeroDecimal === 0) return "0";
 
-        $binario = "";
-        $temporal = abs($numero);
+        $cadenaBinaria = "";
+        $valorRestante = abs($numeroDecimal);
 
-        while ($temporal > 0) {
-            $residuo = $temporal % 2;
-            $binario = $residuo . $binario; // Concatena el residuo al inicio
-            $temporal = floor($temporal / 2);
+        while ($valorRestante > 0) {
+            $bit = $valorRestante % 2; // El residuo de dividir entre 2 es el siguiente bit
+            $cadenaBinaria = $bit . $cadenaBinaria; // Se antepone: los bits salen de derecha a izquierda
+            $valorRestante = intdiv($valorRestante, 2);
         }
 
-        return $numero < 0 ? "-" . $binario : $binario;
+        return $numeroDecimal < 0 ? "-" . $cadenaBinaria : $cadenaBinaria;
+    }
+}
+// quita los espacios toma el numero enviado funcion trim 
+
+$entradaNumero = trim($_POST['numero'] ?? '');
+$entradaNumero = trim($_POST['numero'] ?? '');
+$resultadoBinario = "";
+$mensajeError = "";
+
+if ($entradaNumero !== '') {
+
+    // Devuelve el entero, o false si no es un entero válido =z
+    $numeroValido = filter_var($entradaNumero, FILTER_VALIDATE_INT, [
+        'options' => ['min_range' => -900000, 'max_range' => 900000]
+    ]);
+
+    if ($numeroValido === false) {
+        $mensajeError = "Ingrese un numero entero";
+    } else {
+        $resultadoBinario = (new convertidorNumeros())->enteroABinario($numeroValido);
+        // Crea el convertidor y guarda el número en binario
     }
 }
