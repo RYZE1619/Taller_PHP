@@ -1,42 +1,41 @@
 @font-face {
     font-family: letra1;
-    src: url(../letra/LioneyDemo.ttf)
+    src: url('../letra/LioneyDemo.ttf');
 }
 
-/* Estilos generales para centrar el menú en la página */
+/* Estilos generales */
 body {
     font-family: letra1;
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
+
     background-image: url('../img/Fondo.png');
-    /*tamaño y posición */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-h1,
-h2,
-h3 {
+/* Título principal */
+h2 {
     color: black;
     font-size: 6cap;
     font-weight: bold;
-    /* Morado para títulos */
     font-family: letra1;
     letter-spacing: 2px;
     margin-bottom: 10%;
     margin-top: 5%;
 }
 
-/* Contenedor principal */
+/* Contenedor del menú */
 .menu-container {
-    background-color: #69778D;
+    background-color: rgba(105, 119, 141, 0.65);
     padding: 40px;
     margin-top: 10%;
     margin-bottom: 10%;
@@ -47,47 +46,41 @@ h3 {
     max-width: 600px;
 }
 
+/* Contenedor de enlaces */
 .menu-apps {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* Espacio uniforme entre botones */
 }
 
-/* Estilos de los enlaces (botones) */
+/* Enlaces del menú */
 .menu-apps a {
     display: block;
     text-decoration: none;
     color: #fff;
     background-color: #5B5CE6;
-    ;
-    /* Color verde base */
     padding: 15px 25px;
     border-radius: 8px;
     font-size: 25px;
     font-weight: 500;
-    transition: all 0.3s ease;
-    /* Transición suave para todas las propiedades */
+
+    transition: all 0.5s ease-in-out;
+
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Efecto hover (al pasar el ratón) */
+/* Efecto al pasar el mouse */
 .menu-apps a:hover {
     background-color: #2A438C;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    transition: 3s;
-    border: black solid 3px;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: 2px solid black;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
-/* Efecto active (al hacer clic) */
+/* Efecto al hacer clic */
 .menu-apps a:active {
-    transform: translateY(1px);
-    /* Se hunde ligeramente */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra más pequeña */
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }

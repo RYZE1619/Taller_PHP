@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Acronimos</title>
-    <link rel="stylesheet" href="../css/grid.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-    <div class="menu-apps">
+    <div class="menu-container">
+        <h2>MENU DE TALLER PHP</h2>
         <form action="../operaciones/acronimo.php" method="post">
             <div>
                 <label for="phrase">Ingrese una frase:</label>
