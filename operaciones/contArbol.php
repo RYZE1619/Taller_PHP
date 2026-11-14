@@ -12,7 +12,7 @@ $listaPost = [];
 $arbolFin = null;
 $mensajeError = "";
 
-// Convertir los textos en arreglos
+// Convertir los textos en array
 if ($entradaPre !== "") {
     $listaPre = separarElementos($entradaPre);
 }
@@ -35,18 +35,16 @@ $cantidadDatos = count(array_filter([
 if ($cantidadDatos < 2) {
     $mensajeError = "Debe ingresar al menos dos recorridos.";
 } else {
-
-    // Verificar que cada recorrido tenga valores únicos
     $datosValidos = true;
 
     foreach ([$listaPre, $listaIn, $listaPost] as $lista) {
-        // array_unique elimina duplicados; si cambia el tamaño, había repetidos
+        // array_unique elimina los elemento repetidos que sean diferentes 
         if (count($lista) !== count(array_unique($lista))) {
             $datosValidos = false;
         }
     }
 
-    // Comprobar que los recorridos contengan los mismos valores
+    // Comprobar que los recorridos de dos en dos tienen que estar las mismas letras
     if ($datosValidos) {
         if ($entradaPre !== "" && $entradaIn !== "") {
             $datosValidos = mismosElementos($listaPre, $listaIn);
