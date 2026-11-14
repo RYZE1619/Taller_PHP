@@ -5,20 +5,23 @@ class Nodo
     private ?Nodo $izquierda;
     private ?Nodo $derecha;
 
+    //creacion de nodos
     public function __construct(string $valor, ?Nodo $izquierda = null, ?Nodo $derecha = null)
     {
         $this->valor = $valor;
         $this->izquierda = $izquierda;
         $this->derecha = $derecha;
     }
-    public function getValor()
+
+    public function getValor() //lee el valor
     {
         return $this->valor;
     }
-    public function setValor(string $valor)
+    public function setValor(string $valor) //cambia
     {
         $this->valor = $valor;
     }
+    //devuelve asigna
     public function getIzquierda()
     {
         return $this->izquierda;
@@ -36,6 +39,7 @@ class Nodo
         $this->derecha = $valor;
     }
 
+    //imprimenodo N ,I y D
     public function preorden()
     {
         echo "<h2 class=subtitulo>$this->valor</h2>";
@@ -46,6 +50,7 @@ class Nodo
             $this->derecha->preorden();
         }
     }
+    //imprimenodo I ,N y D
     public function inorden()
     {
         if ($this->izquierda != null) {
@@ -56,6 +61,7 @@ class Nodo
             $this->derecha->inorden();
         }
     }
+    //imprimenodo I ,D y N
     public function postorden()
     {
         if ($this->izquierda != null) {

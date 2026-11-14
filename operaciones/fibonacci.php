@@ -16,20 +16,21 @@ class secuenciaFibonacci
         return $secuencia;
     }
 }
-
+//n de formulario y prepara dos variables vacias una la serie y otra para posible error
 $entradaCantidad = trim($_POST['cantidad'] ?? '');
 $serieFinal = [];
 $mensajeError = "";
 
 if ($entradaCantidad !== '') {
-    // filter_var devuelve false si no es un entero válido dentro del rango
+    // valida la entrada, comprueba que sea un entero(1 a 99) 
     $cantidadValida = filter_var($entradaCantidad, FILTER_VALIDATE_INT, [
         'options' => ['min_range' => 1, 'max_range' => 90]
     ]);
 
-    if ($cantidadValida === false) {
+    if ($cantidadValida === false) { //condicional de si falla la validacion / mismo dato y mismo tipo de variable
         $mensajeError = "Ingrese un número entero entre 1 y 90.";
     } else {
         $serieFinal = (new secuenciaFibonacci())->genera($cantidadValida);
+        //calcula la serie con la cantidad de terminos y guarda el arreglo que luego se imprime
     }
 }

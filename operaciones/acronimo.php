@@ -11,7 +11,7 @@ class Acronimo
 
     public function genera(): string
     {
-        // quita los espacios I y F corta el texto en pedazos PS y el PSNE descarta pedazos vacios res es un arreglo
+        //trim corta el texto en pedazos PS y el PSNE descarta pedazos vacios res es un arreglo
         $listaPalabras = preg_split('/[\s-]+/', trim($this->textoingr), -1, PREG_SPLIT_NO_EMPTY);
 
         $resultado = '';

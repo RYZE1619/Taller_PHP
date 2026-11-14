@@ -5,13 +5,13 @@ class estadistica
 
     public function __construct(array $datos)
     {
-        $this->datos = $datos;
+        $this->datos = $datos; // propiedad
     }
 
-    public function promedio(): float
+    public function promedio(): float //evita la divicion por cero
     {
         if (empty($this->datos)) return 0;
-        return array_sum($this->datos) / count($this->datos);
+        return array_sum($this->datos) / count($this->datos); //suma y cuenta cuantos tiene
     }
 
     public function mediana(): float
@@ -19,14 +19,13 @@ class estadistica
         if (empty($this->datos)) return 0;
 
         $datosOrdenados = $this->datos;
-        sort($datosOrdenados);
+        sort($datosOrdenados); // ordena de m a M y cuenta,copia
         $cantidadDatos = count($datosOrdenados);
 
-        // (int) evita que el índice llegue como decimal en PHP 8+
+        // pocicion que se asemeja a busqueda que empieza de 0 redondea
         $indiceMedio = (int) floor(($cantidadDatos - 1) / 2);
 
         if ($cantidadDatos % 2 == 0) {
-            // Cantidad par: promedio de los dos valores centrales
             return ($datosOrdenados[$indiceMedio] + $datosOrdenados[$indiceMedio + 1]) / 2.0;
         }
         return $datosOrdenados[$indiceMedio];
@@ -36,17 +35,17 @@ class estadistica
     {
         if (empty($this->datos)) return [];
 
-        // array_count_values solo cuenta int o string, por eso se pasan los decimales a texto
+        // convertir de numero a texto y luego cuenta cuantas veces aparece
         $frecuencias = array_count_values(array_map('strval', $this->datos));
         $mayorFrecuencia = max($frecuencias);
 
-        // Si ningún valor se repite, no hay moda
+        // condicional si no se revite valor
         if ($mayorFrecuencia === 1) return [];
 
         $listaModas = [];
-        foreach ($frecuencias as $valor => $repeticiones) {
+        foreach ($frecuencias as $valor => $repeticiones) { //recorre frecuencias y guarda los valores >
             if ($repeticiones === $mayorFrecuencia) {
-                $listaModas[] = $valor; // Puede haber más de una moda (bimodal)
+                $listaModas[] = $valor; // Puede haber más de una moda (bimoda)
             }
         }
         return $listaModas;
@@ -58,16 +57,16 @@ $listaDatos = [];
 $mensajeError = "";
 
 if ($entradaDatos !== '') {
-    // Separa por comas, quita espacios y descarta los vacíos (por ejemplo "1,2,")
+    //E corta text(,) A quita espacios y luego descarta pedazo
     $partes = array_filter(array_map('trim', explode(',', $entradaDatos)), 'strlen');
 
-    foreach ($partes as $parte) {
-        if (!is_numeric($parte)) {
+    foreach ($partes as $parte) { //guarda temporalmente los elementos
+        if (!is_numeric($parte)) { // comprovacion y convierte texto a numero
             $mensajeError = "Solo se permiten números separados por comas (use punto para decimales).";
             $listaDatos = [];
             break;
         }
-        $listaDatos[] = $parte + 0; // "5" pasa a int y "2.5" pasa a float
+        $listaDatos[] = $parte + 0;
     }
 
     if ($mensajeError === "" && empty($listaDatos)) {
@@ -79,7 +78,7 @@ $resultadoPromedio = null;
 $resultadoMediana = null;
 $resultadoModa = [];
 
-if (!empty($listaDatos)) {
+if (!empty($listaDatos)) { // se crea el objeto y se guarda , redondea, se guarda el objeto en una variable
     $calculo = new estadistica($listaDatos);
     $resultadoPromedio = round($calculo->promedio(), 2);
     $resultadoMediana = round($calculo->mediana(), 2);

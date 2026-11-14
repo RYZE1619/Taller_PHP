@@ -1,50 +1,48 @@
 <?php
 class conjuntos
 {
-    private array $elementosA;
-    private array $elementosB;
+    private array $eleA;
+    private array $eleB;
 
-    public function __construct(array $elementosA, array $elementosB)
+    public function __construct(array $eleA, array $eleB)
     {
-        // array_unique elimina los repetidos; array_values reinicia los índices
-        $this->elementosA = array_values(array_unique($elementosA));
-        $this->elementosB = array_values(array_unique($elementosB));
+        // elimina copiasreorganiza los índices y guarda el resultado
+        $this->eleA = array_values(array_unique($eleA));
+        $this->eleB = array_values(array_unique($eleB));
     }
 
-    public function obtenerUnion(): array      // elementos de A y B, sin repetir
+    public function obtenerUnion(): array
     {
-        return array_values(array_unique(array_merge($this->elementosA, $this->elementosB)));
+        return array_values(array_unique(array_merge($this->eleA, $this->eleB)));
     }
 
-
-    // Solo los elementos que están en A y también en B
     public function obtenerInterseccion(): array
     {
-        return array_values(array_intersect($this->elementosA, $this->elementosB));
+        return array_values(array_intersect($this->eleA, $this->eleB));
     }
 
-    // Elementos de A que no están en B
+    // A-B
     public function obtenerDiferenciaAB(): array
     {
-        return array_values(array_diff($this->elementosA, $this->elementosB));
+        return array_values(array_diff($this->eleA, $this->eleB));
     }
 
-    // Elementos de B que no están en A
     public function obtenerDiferenciaBA(): array
     {
-        return array_values(array_diff($this->elementosB, $this->elementosA));
+        return array_values(array_diff($this->eleB, $this->eleA));
     }
 }
 
-// Convierte "a, b,, c" en ['a','b','c'] (quita espacios y vacíos)
+// de texto a lista, corta el texto en , trim de cada pedaxo y quita los espacios vacios
 function convertirALista(string $texto): array
 {
     return array_values(array_filter(array_map('trim', explode(',', $texto)), 'strlen'));
 }
 
-// Muestra el conjunto entre llaves; si está vacío, el símbolo de conjunto vacío
+// 
 function formatearConjunto(array $elementos): string
 {
+    //array entexto y separa las comas
     return empty($elementos) ? "Vacio" : "{ " . implode(", ", $elementos) . " }";
 }
 
@@ -60,7 +58,7 @@ if ($entradaA !== '' || $entradaB !== '') {
     if (empty($listaA) && empty($listaB)) {
         $mensajeError = "Ingrese elementos separados por comas en al menos un conjunto.";
     } else {
-        $calculo = new conjuntos($listaA, $listaB);
+        $calculo = new conjuntos($listaA, $listaB); //arma el array 
         $operaciones = [
             "Unión (A ∪ B)" => $calculo->obtenerUnion(),
             "Intersección (A ∩ B)" => $calculo->obtenerInterseccion(),
