@@ -9,7 +9,7 @@ $mensajeSalidaPantalla = "";
 $operadorSeleccionado = "";
 
 $registroHistorial = $_GET["historial"] ?? [];
-
+//envio de historial y elimina elementos que no sean texto 
 if (!is_array($registroHistorial)) {
     $registroHistorial = [];
 }
@@ -81,7 +81,7 @@ if ($cadenaEntradaActual !== "") {
         // Convertir el operador interno a su símbolo
         $operadorSeleccionado = toSimbolo($operadorSeleccionado);
 
-        // Si el último carácter es un operador, mostrarlo
+        // Si el último caracter es un operador, mostrarlo
         if (
             !$debeCalcularResultado &&
             esOperacion(substr($cadenaEntradaActual, -1))
@@ -142,10 +142,8 @@ if ($cadenaEntradaActual !== "") {
 
                 $mensajeSalidaPantalla .= $contenidoPantalla;
 
-                // Guardar la expresión en el historial
+                // Limitar el historial a 20 operaciones y guarda el historial
                 $registroHistorial[] = $cadenaEntradaActual;
-
-                // Limitar el historial a 20 operaciones
                 $registroHistorial = array_slice(
                     $registroHistorial,
                     -20
